@@ -1,6 +1,6 @@
 module normrand
   implicit none
-contains ! generator nahodnych cisel stazeny s internetu, ten bych pozdeji zkusil dodelat 'na miru' pro toto pouziti
+contains ! generator nahodnych cisel stazeny z internetu, ten bych pozdeji zkusil dodelat 'na miru' pro toto pouziti
   FUNCTION grnd() RESULT (ran_norm) ! vraci nahodne cislo z normalnih rozdeleni
 
       IMPLICIT NONE
