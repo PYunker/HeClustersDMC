@@ -40,7 +40,7 @@ program dmc
         m = [(1, j=1,N_max)] ! 'spawn number', udava zda-li replika zije a zda-li se ma zkopirovat
         write(*,"(1x,'Blok',4x,'N',5x,'<H>',6x,'<V>')")
         dp = size(x0) ! prostorova dimenze problemu
-        rep = reshape([(x0, j=1,N_max)],[N_max,dp]) ! repliky jsou ulozeny v matici (prvni index - cislo repliky, druhy - prostorava dimenze)
+        rep = reshape([(x0, j=1,N_max * dp)],[N_max,dp]) ! repliky jsou ulozeny v matici (prvni index - cislo repliky, druhy - prostorava dimenze)
         p_replik = N0 ! pocet zivych replik v danny moment
         h = N0 ! protoze ve fortranu nejde snadno za chodu menit rozmer vektoru a matic, jsou vsechny delsi nez je treba a bere se z nich jen zacetek (od 1 do h)
         Er = potencial(x0) ! inicializace referencni energie
