@@ -6,4 +6,6 @@ This is (going to be) a rather disorganised pile of utilities for drawing sample
 
 
 Everything is written in Fortran, using some Lapack, Blas and MPI
+
+
 (note for collaborators : ) různé další soubory (grafy atp.) [zde](https://drive.google.com/drive/folders/1GCk214wVyhbHRdO6Afs1KrC-Fhj9AN-_?usp=sharing).
