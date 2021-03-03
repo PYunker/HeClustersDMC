@@ -1,6 +1,6 @@
-FC = mpifort
-FFLAGS = -ffpe-trap=invalid
-SRC = metropolis.f90 grid_utils.f90 akde_botev.f90 main.f90
+FC = mpif90
+FFLAGS =# -ffpe-trap=invalid -Wall
+SRC = metropolis.f90 grid_utils.f90 kde.f90 main.f90
 OBJ = ${SRC:.f90=.o}
 
 %.o: %.f90
