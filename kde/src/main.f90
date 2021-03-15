@@ -19,8 +19,7 @@ program akde_mse_test
 	character(len=10) :: arg
 	! variables concerning MPI IO
 	integer :: offset_runs
-	! includes : grid_n, Ef, Ef2, Es, Es2, grid, exact (when available)
-	! includes : d, gam, runs, mu, w, sig, det		
+	! includes : d, gam, runs, mu, w, sig, det
 	type(MPI_FILE) :: estimator_file
 	type(MPI_STATUS) :: estimator_file_stat
 	integer :: estimate_file_unit, mu_offset, w_offset, sig_offset, det_offset
