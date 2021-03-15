@@ -24,7 +24,7 @@ contains
 		real(kind=DP) :: a, b
 		integer :: i
 
-		! obtain axis by linearly transforming sequence 1, 2, ..., n
+		! obtain axis by linear transformation of sequence 1, 2, ..., n
 		a = (high - low)/(n - 1)
 		b = (low*n - high)/(n - 1)
 		grid(1,:) = a * [(i, i=1,n)] + b
