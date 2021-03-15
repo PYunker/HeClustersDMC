@@ -15,6 +15,7 @@ program akde_mse_test
 	real(kind=DP) :: grid(d,grid_n), h, lam
 	real(kind=DP), allocatable :: sample(:,:), mu(:,:), w(:), sig(:,:,:), det(:)
 	procedure(rn_to_r), pointer :: pdf => comb
+	character(len=100) :: filename_suffix
 	character(len=10) :: arg
 	! variables concerning MPI IO
 	integer :: offset_runs
@@ -29,6 +30,7 @@ program akde_mse_test
 	! loads the value of gam (kernel count), sample_size, lam (scaling constant),
 	! and grid_n respectively, they must all be present when invoking the executable
 	call load_command_line_args()
+	write(filename_suffix,"('_gam',i0,'_runs',i0,'_lam',f4.2)") gam, runs, lam
 
 	! set up communicators and balance the load between procesess
 	call mpi_setup()
@@ -94,7 +96,7 @@ program akde_mse_test
 	
 	! output Ef, Ef2, Es, Es2, grid, exact (if available) into file
 	if (world_rank == 0) then	
-		call save_estimate('estimate', estimate)
+		call save_estimate('estimate'//trim(filename_suffix), estimate)
 	end if
 
 	! disconnect output files, deallocate memory etc...
@@ -113,7 +115,7 @@ contains
 		if (command_argument_count() /= 4) then
 			if (world_rank == 0) then
 				print*, ' 4 cmd. line arguments need to be passed along &
-with the executable : kernel count (int), sample size (int), number independent &
+with the executable : kernel count (int), sample size (int), number of independent &
 runs(int), scaling constant (real)'
 				print*, ' terminating'
 			end if
@@ -166,7 +168,7 @@ runs(int), scaling constant (real)'
 		det_offset = sig_offset + (runs * d * d + offset_runs) * gam * DP_SIZE
 
 		! connect output files (using MPI IO)
-		call MPI_FILE_OPEN(MPI_COMM_WORLD, 'estimator', &
+		call MPI_FILE_OPEN(MPI_COMM_WORLD, 'estimator'//trim(filename_suffix), &
 		                   ior(MPI_MODE_CREATE, MPI_MODE_WRONLY), &
 		                   MPI_INFO_NULL, estimator_file)
 		
