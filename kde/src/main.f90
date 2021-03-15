@@ -169,16 +169,17 @@ runs(int), scaling constant (real)'
 		call MPI_FILE_OPEN(MPI_COMM_WORLD, 'estimator', &
 		                   ior(MPI_MODE_CREATE, MPI_MODE_WRONLY), &
 		                   MPI_INFO_NULL, estimator_file)
+		
+		if (world_rank == 0) then
+			call MPI_FILE_WRITE(estimator_file, d, 1, MPI_INTEGER, &
+					    estimator_file_stat)
 
-		call MPI_FILE_WRITE(estimator_file, d, 1, MPI_INTEGER, &
-		                    estimator_file_stat)
+			call MPI_FILE_WRITE(estimator_file, gam, 1, MPI_INTEGER, &
+					    estimator_file_stat)
 
-		call MPI_FILE_WRITE(estimator_file, gam, 1, MPI_INTEGER, &
-		                    estimator_file_stat)
-
-		call MPI_FILE_WRITE(estimator_file, runs, 1, MPI_INTEGER, &
-		                    estimator_file_stat)
-
+			call MPI_FILE_WRITE(estimator_file, runs, 1, MPI_INTEGER, &
+					    estimator_file_stat)
+		end if
 
 	end subroutine
 
