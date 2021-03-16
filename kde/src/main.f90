@@ -38,7 +38,7 @@ program akde_mse_test
 	!call grid_init_2d(grid, -5.0D0, 5.0D0, -5.0D0, 5.0D0, 50, 50)
 	call grid_init_1d(grid,-5.0D0,5.0D0,grid_n)
 
-	call omp_set_num_threads(4)	
+	! call omp_set_num_threads(4)
 	
 	! main cycle - for every run, draw new sample and obtain estimate
 	do run=1,node_runs
