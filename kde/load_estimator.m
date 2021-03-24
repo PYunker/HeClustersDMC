@@ -1,5 +1,6 @@
 # load the estimator
-fid = fopen('estimator','r');
+fnm = uigetfile();
+fid = fopen(fnm,'r');
 d = fread(fid,1,'int32');
 gam = fread(fid,1,'int32');
 runs = fread(fid,1,'int32');
